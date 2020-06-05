@@ -1,3 +1,4 @@
+const config = require('./config.json');
 // ask for the discord.js module (require it)
 const Discord = require('discord.js');
 
@@ -11,7 +12,7 @@ client.once('ready', () => {
 });
 
 // login to Discord with app's token
-client.login('NzE4Mzk0MDIzNTI5OTM4OTc2.XtoPqQ.o3UGqsThk7WYVEYCnCpex3vcU58');
+client.login(config.token);
 
 // on --> this can trigger multiple times
 client.on('message', message => {
