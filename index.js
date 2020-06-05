@@ -13,4 +13,10 @@ client.once('ready', () => {
 // login to Discord with app's token
 client.login('NzE4Mzk0MDIzNTI5OTM4OTc2.XtoPqQ.o3UGqsThk7WYVEYCnCpex3vcU58');
 
-
+// on --> this can trigger multiple times
+client.on('message', message => {
+    if(message.content == '!floop')
+    {
+        message.channel.send('shloop');
+    }
+});
