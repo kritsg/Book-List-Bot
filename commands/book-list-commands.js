@@ -40,12 +40,12 @@ var self = module.exports = {
         message.channel.send(`${book_title} marked as in progress`);
     }, 
 
-    mark_complete: function () {
+    mark_complete: function (message, args) {
         message.channel.send('here, supposed to be marking a book complete');
         message.channel.send(`${book_title} marked as complete`)
     }, 
 
-    delete_book: function () {
+    delete_book: function (message, args) {
         message.channel.send('here, yeeting a book off the book list');
         message.channel.send(`${book_title} removed from the book list`);
     },
