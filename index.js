@@ -52,17 +52,18 @@ client.on('message', message => {
     const command = args.shift().toLowerCase(); // isolates the command statement 
 
     if (command === 'add-book') {
+        if (!args.length) { // if the user didn't provide any other arguments after the command
+            return message.channel.send(`You didn't provide any arguments! Type !commands for command descriptions.`);
+        } else if (args[0] === ``) {
+            return message.channel.send(`You didn't provide a book title! Type !commands for command descriptions.`);
+        } else {
+            client.commands.get('book-list-commands').add_book();
+        }
+        
         console.log(args[0]);
         console.log(args[1]);
         
-        if (!args.length) { // if the user didn't provide any other arguments after the command
-            return message.channel.send(`You didn't provide any arguments! Type !commands for command descriptions.`);
-        } 
-
-        else if (args[0] === ``) {
-            return message.channel.send(`You didn't provide a book title! Type !commands for command descriptions.`);
-        } 
-
+         
         message.channel.send(`Book added: ${args[0]} by ${args[1]}`);
 
     } else if(command === 'floop') { // sanity check command
