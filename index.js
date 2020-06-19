@@ -52,14 +52,8 @@ client.on('message', message => {
     const command = args.shift().toLowerCase(); // isolates the command statement 
 
     if (command === 'add-book') {
-        // need to move these statements to the add_book part of book-list-commands
-        if (!args.length) { // if the user didn't provide any other arguments after the command
-            message.channel.send(`You didn't provide any arguments! Type !commands for command descriptions.`);
-        } else if (args[0] === ``) {
-            message.channel.send(`You didn't provide a book title! Type !commands for command descriptions.`);
-        } else {
-            client.commands.get('book-list-commands').add_book(message, args);
-        }        
+        client.commands.get('book-list-commands').add_book(message, args);
+
     } else if (command === 'mark-complete') {
         message.channel.send(`Marking a book complete`);
         client.commands.get('book-list-commands').mark_complete(message, args);
@@ -74,8 +68,7 @@ client.on('message', message => {
 
     } else if(command === 'display-list') {
         var book_list = client.commands.get('book-list-commands').get_book_list();
-        emebededList = client.commands.get('display-list').execute(message, args, book_list);
-        channel.send(emebededList);
+        client.commands.get('display-list').execute(message, args, book_list); 
 
     } else if(command === 'floop') { // sanity check command
         client.commands.get('floop').execute(message, args);
