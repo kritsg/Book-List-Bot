@@ -9,8 +9,8 @@ var completed = '\u2611';
 var listEmbed = new Discord.MessageEmbed()
 	.setColor('#AECDAD')
 	.setTitle('Book List')
-	.addFields(
-		{ name: 'uhwegweg', value: unread + ' ' + 'hihihi'})
+	// .addFields(
+	// 	{ name: 'uhwegweg', value: unread + ' ' + 'hihihi'})
 	// 	{ name: ':orange_square:', value: '\u2611' },
 	// 	{ name: 'Inline field title', value: 'Some value here', inline: true },
 	// 	{ name: 'Inline field title', value: 'Some value here', inline: true },
@@ -30,6 +30,7 @@ updateEmbed = function(message, book_list) {
 		if (book.status === 'unread') {
 			console.log(book.fullTitle);
 			// the resulting format seems a bit iffy, need to figure out a better format later
+			// Possible Format: Name: Book {Number}, Value: Book title + book author
 			listEmbed.addField(book.bookAuthor, unread + ' ' + book.bookTitle, false);
 		} else if (book.status === 'in_progress') {
 			listEmbed.addField(book.bookAuthor, in_progress + ' ' + book.bookTitle, false);
@@ -46,7 +47,6 @@ var self = module.exports = {
     description: 'shows the book list using MessageEmbed',
 
 	execute: function(message, args, book_list) {
-		updateEmbed(message, book_list);
-        
+		updateEmbed(message, book_list);   
 	}
 }
