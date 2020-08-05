@@ -31,11 +31,11 @@ updateEmbed = function(message, book_list) {
 			console.log(book.fullTitle);
 			// the resulting format seems a bit iffy, need to figure out a better format later
 			// Possible Format: Name: Book {Number}, Value: Book title + book author
-			listEmbed.addField(book.bookAuthor, unread + ' ' + book.bookTitle, false);
+			listEmbed.addField(`Book #${book_list.indexOf(book)}`, `${unread} ${book.bookTitle} by ${book.bookAuthor}`, false);
 		} else if (book.status === 'in_progress') {
-			listEmbed.addField(book.bookAuthor, in_progress + ' ' + book.bookTitle, false);
+			listEmbed.addField(`Book #${book_list.indexOf(book)}`, `${unread} ${book.bookTitle} by ${book.bookAuthor}`, false);
 		} else if (book.status === 'complete') {
-			listEmbed.addField(book.bookAuthor, completed + ' ' + book.bookTitle, false);
+			listEmbed.addField(`Book #${book_list.indexOf(book)}`, `${unread} ${book.bookTitle} by ${book.bookAuthor}`, false);
 		}
 	}	
 	message.channel.send(listEmbed);
