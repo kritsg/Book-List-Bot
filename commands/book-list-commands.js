@@ -44,6 +44,15 @@ function book_exists () {
     return false;
 }
 
+function find_book () {
+    for (i = 0; i < book_list.length; i++){
+        if (book_list[i].bookTitle === book_title && book_list[i].bookAuthor === book_author) {
+            return i;
+        }
+    }
+    
+    return -1; // indicates that the book couldn't be found
+}
 
 var self = module.exports = {
 	name: 'book-list-commands',
@@ -68,16 +77,37 @@ var self = module.exports = {
             if(!book_exists()) {
                 message.channel.send('This book isn\'t in your list yet.');
             } else {
-                
-                message.channel.send(`${book_title} marked as in progress`);
+                book_index = find_book()
+                if(book_index >= 0) {
+                    book_list[book_index].markInProgress()
+                    message.channel.send(`${book_title} marked as in progress`);
+                } else {
+                    message.channel.send(`${book_title} wasn't found.`);
+                }
             }
-            
+
+            book_title = ''; book_author = ''; // resetting the variables
         } 
     }, 
 
     mark_complete: function (message, args) {
-        message.channel.send('here, supposed to be marking a book complete');
-        message.channel.send(`${book_title} marked as complete`)
+        if (is_valid_args(args)) {
+            separate_title_author(args);
+            if(!book_exists()) {
+                message.channel.send('This book isn\'t in your list yet.');
+            } else {
+                book_index = find_book()
+                if(book_index >= 0) {
+                    book_list[book_index].markComplete()
+                    book_list.push(book_list.splice(book_index, 1)[0]);
+                    message.channel.send(`${book_title} marked complete`);
+                } else {
+                    message.channel.send(`${book_title} wasn't found.`);
+                }
+            }
+            
+            book_title = ''; book_author = ''; // resetting the variables
+        } 
     }, 
 
     delete_book: function (message, args) {

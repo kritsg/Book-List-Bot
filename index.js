@@ -54,7 +54,7 @@ client.on('message', message => {
     if (command === 'add-book') {
         client.commands.get('book-list-commands').add_book(message, args);
 
-    } else if (command === 'mark-complete') {
+    } else if (command === 'completed') {
         message.channel.send(`Marking a book complete`);
         client.commands.get('book-list-commands').mark_complete(message, args);
 
