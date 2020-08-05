@@ -27,13 +27,14 @@ updateEmbed = function(message, book_list) {
 	console.log('here');
 	listEmbed.fields = [];
 	for (const book of book_list) {
+		index = book_list.indexOf(book) + 1
 		if (book.status === 'unread') {
 			console.log(book.fullTitle);
-			listEmbed.addField(`Book #${book_list.indexOf(book)}`, `${unread} ${book.bookTitle} by ${book.bookAuthor}`, false);
+			listEmbed.addField(`Book #${index}`, `${unread} ${book.bookTitle} by ${book.bookAuthor}`, false);
 		} else if (book.status === 'in_progress') {
-			listEmbed.addField(`Book #${book_list.indexOf(book)}`, `${in_progress} ${book.bookTitle} by ${book.bookAuthor}`, false);
+			listEmbed.addField(`Book #${index}`, `${in_progress} ${book.bookTitle} by ${book.bookAuthor}`, false);
 		} else if (book.status === 'complete') {
-			listEmbed.addField(`Book #${book_list.indexOf(book)}`, `${completed} ${book.bookTitle} by ${book.bookAuthor}`, false);
+			listEmbed.addField(`Book #${index}`, `${completed} ${book.bookTitle} by ${book.bookAuthor}`, false);
 		}
 	}	
 	message.channel.send(listEmbed);

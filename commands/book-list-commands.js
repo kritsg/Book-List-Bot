@@ -111,8 +111,22 @@ var self = module.exports = {
     }, 
 
     delete_book: function (message, args) {
-        message.channel.send('here, yeeting a book off the book list');
-        message.channel.send(`${book_title} removed from the book list`);
+        if (is_valid_args(args)) {
+            separate_title_author(args);
+            if(!book_exists()) {
+                message.channel.send('This book isn\'t in your list yet.');
+            } else {
+                book_index = find_book()
+                if(book_index >= 0) {
+                    book_list.splice(book_index, 1)
+                    message.channel.send(`${book_title} has been deleted`);
+                } else {
+                    message.channel.send(`${book_title} wasn't found.`);
+                }
+            }
+            
+            book_title = ''; book_author = ''; // resetting the variables
+        } 
     },
 
     get_book_list: function() {
