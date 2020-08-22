@@ -3,6 +3,7 @@ Discord bot that keeps track of books I want to read/have read
 
 ## Commands 
 *Note: Not all commands are currently functional, new ones may be added soon.*
+Need to modify user input format because it's too rigid. 
 
 ```!add-book [Book Name] by [Author]``` - Adds a new book to the list. 
 
