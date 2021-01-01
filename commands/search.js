@@ -6,7 +6,6 @@ var self = module.exports = {
 
 	async execute(message, args, api_key) {
         var search = args.join(" ");
-        console.log(helper);
         var isLink = search.includes("google.com/books");
 
         try {

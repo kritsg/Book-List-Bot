@@ -10,18 +10,18 @@ var self = module.exports = {
         try { 
             message.channel.send(await helper.searchBook(message, search, isLink, api_key))
                 .then(async (embedMessage) => {
-                    const filter = (reaction, user) => {return (reaction.emoji.name == '👍' || reaction.emoji.name == '👎') && user.id == message.author.id;};
+                    const filter = (reaction, user) => {return (reaction.emoji.name == '✅' || reaction.emoji.name == '❌') && user.id == message.author.id;};
                     
                     try {
-                        await embedMessage.react('👍');
-                        await embedMessage.react('👎');
+                        await embedMessage.react("✅");
+                        await embedMessage.react("❌");
                     } catch (e) {
                         console.log("Message deleted");
                     }
     
                     embedMessage.awaitReactions(filter, {max: 1, time: 15000, errors: ["time"]}).then(function(collected) {
                         const reaction = collected.first();
-                        if (reaction.emoji.name == '👍') {
+                        if (reaction.emoji.name == '✅') {
                             message.channel.send('Book will be added');
                         } else {
                             message.channel.send("Book will not be added");
