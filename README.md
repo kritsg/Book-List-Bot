@@ -3,21 +3,20 @@ Discord bot that keeps track of books a user wants to read/have read. Uses the G
 
 ## Commands 
 *Note: Not all commands are currently functional, new ones may be added soon.*
-Need to modify user input format because it's too rigid. 
 
-```!add-book [Book Name] by [Author]``` - Adds a new book to the list. 
+Semi-functional
 
-```!in-progress [Book Name] by [Author]``` - Marks a book as 'in progress' in the list 
+```!add [book name|Google Books link]``` - Searches for the user-requested book and asks if the user wants to add the book to the list (if it isn't added already). 
+
+```!search [book name|Google Books link]``` - Searches for the book and displays the first result from Google Books.
+
+Not functional:
+
+```!list``` - Shows user the book list
+
+```!clear``` - Removes all books from the book list
 
 ```!completed [Book Name] by [Author]``` - Marks a book as completed in the list
 
-```!delete-book [Book Name] by [Author]``` - Deletes the book from the list
-
-```!display-list``` - Shows user the book list
-
-```!delete-list``` - Removes all books from the book list
-
-```!about```
-
-```!commands```
+```!commands``` - Returns all of the commands a user can use
 
