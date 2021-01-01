@@ -1,6 +1,8 @@
 
 const fs = require('fs');
-const {prefix, token} = require('./config.json');
+const {google} = require('googleapis');
+const {prefix, token, api_key} = require('./config.json');
+
 // ask for the discord.js module (require it)
 const Discord = require('discord.js');
 
@@ -51,26 +53,35 @@ client.on('message', message => {
     const args = message.content.slice(prefix.length).split(/ +/); // splits the message into an array by spaces, <-- need to modify later
     const command = args.shift().toLowerCase(); // isolates the command statement 
 
-    if (command === 'add-book') {
-        client.commands.get('book-list-commands').add_book(message, args);
-
-    } else if (command === 'completed') {
-        message.channel.send(`Marking a book complete`);
-        client.commands.get('book-list-commands').mark_complete(message, args);
-
-    } else if (command === 'in-progress') {
-        message.channel.send(`Changing book status to in progress`);
-        client.commands.get('book-list-commands').in_progress(message, args);
-
-    } else if (command === 'delete-book') {
-        message.channel.send(`Deleting a book`);
-        client.commands.get('book-list-commands').delete_book(message, args);
-
-    } else if(command === 'display-list') {
-        var book_list = client.commands.get('book-list-commands').get_book_list();
-        client.commands.get('display-list').execute(message, args, book_list); 
-
+    if(command == 'search'){
+        client.commands.get('search').execute(message, args, api_key)
+    } else if(command == 'add') {
+        client.commands.get('add').execute(message, args, api_key);
     } else if(command === 'floop') { // sanity check command
         client.commands.get('floop').execute(message, args);
     }
 });
+
+// if (command === 'add-book') {
+//     client.commands.get('book-list-commands').add_book(message, args);
+
+// } else if (command === 'completed') {
+//     message.channel.send(`Marking a book complete`);
+//     client.commands.get('book-list-commands').mark_complete(message, args);
+
+// } else if (command === 'in-progress') {
+//     message.channel.send(`Changing book status to in progress`);
+//     client.commands.get('book-list-commands').in_progress(message, args);
+
+// } else if (command === 'delete-book') {
+//     message.channel.send(`Deleting a book`);
+//     client.commands.get('book-list-commands').delete_book(message, args);
+
+// } else if(command === 'display-list') {
+//     var book_list = client.commands.get('book-list-commands').get_book_list();
+//     client.commands.get('display-list').execute(message, args, book_list); 
+
+// } else if(command === 'delete-list') {
+//     message.channel.send(`Removing all books from your list.`);
+
+// } 

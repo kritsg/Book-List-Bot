@@ -22,7 +22,7 @@ var listEmbed = new Discord.MessageEmbed()
 updateEmbed = function(message, book_list) {
 	// not ideal, but clears all the current entries and they're added again along with new ones form the book list
 	if (book_list.length == 0) {
-		return;
+		message.channel.send('You don\'t have any books in your list yet.');
 	} 
 	console.log('here');
 	listEmbed.fields = [];
