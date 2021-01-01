@@ -1,5 +1,5 @@
 # Book List Bot
-Discord bot that keeps track of books I want to read/have read
+Discord bot that keeps track of books a user wants to read/have read. Uses the Google Books API (because Goodreads retired their API =_=).
 
 ## Commands 
 *Note: Not all commands are currently functional, new ones may be added soon.*
